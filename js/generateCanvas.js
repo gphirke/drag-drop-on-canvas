@@ -12,57 +12,50 @@ var canvas0 = null;
 var canvas1 = null;
 var canvas2 = null;
 var canvas3 = null;
-var selectedFromCanvas =  null
-
-var onObjectSelected = function(p){
-	selectedFromCanvas = p.target.canvas;
-}
 
 var onObjectMoving = function(p, evt) {
       var viewport = p.target.canvas.calcViewportBoundaries(); 
       console.log(p.target.canvas.lowerCanvasEl.id);
+      console.log(p.e.clientX)
       if (p.target.canvas === canvas0) {
-          if (p.target.left > (viewport.br.x)) {
-	          transferObject(canvas0, canvas1, p.target);
-	          return;
-          }
-          if (p.e.clientX > 600) {
-            transferObject(canvas0, canvas2, p.target);
-            return;
+          
+        	if(p.e.clientX > 330 && p.e.clientX < 660){
+        		transferObject(canvas0, canvas1, p.target);
         	}
       }
       if (p.target.canvas === canvas1) {
-          /*if (p.target.left < viewport.tl.x) {
-              transferObject(canvas1, canvas0, p.target);
-              return;
-          }
+          
           if (p.e.clientX > 630) {
             transferObject(canvas1, canvas2, p.target);
             return;
-        	}*/
-        	if (p.e.clientX > 360 && p.e.clientX < 660) {
-              transferObject(selectedFromCanvas, canvas1, p.target);
-              return;
-         } 
+        	}
+       
+         if(p.e.clientX < 370){
+          	transferObject(canvas1, canvas0, p.target);
+          	return;
+         }
+
       }
 
-      if(p.e.toElement.previousSibling.id == "canvas2") {
+      if(p.target.canvas == canvas2) {
       	
-        if (p.e.clientX < 960 && p.e.clientX > 660) {
-              transferObject(selectedFromCanvas, canvas2, p.target);
-              return;
-         }
-         if (p.e.clientX > 360 && p.e.clientX < 660) {
-              transferObject(selectedFromCanvas, canvas1, p.target);
+         if (p.e.clientX > 360 && p.e.clientX < 690) {
+              transferObject(canvas2, canvas1, p.target);
               return;
          } 
-         //transferObject(selectedFromCanvas, canvas2, p.target);
-      }
-      if(p.e.toElement.previousSibling.id == "canvas3") {
-      	if (p.e.clientX > 990 && p.e.clientX < 1300) {
-              transferObject(selectedFromCanvas, canvas3, p.target);
+         if (p.e.clientX > 960 && p.e.clientX < 1300) {
+              transferObject(canvas2, canvas3, p.target);
               return;
          }
+         
+      }
+
+      if(p.target.canvas == canvas3) {
+      	if (p.e.clientX > 660 && p.e.clientX < 1020) {
+              transferObject(canvas3, canvas2, p.target);
+              return;
+         }
+         
       }
   };
 
@@ -78,11 +71,11 @@ var transferObject = function(fromCanvas, toCanvas, pendingImage) {
         var removeListener = fabric.util.removeListener;
         var addListener = fabric.util.addListener;
 				
-			/*	removeListener(fabric.document, 'mouseup', fromCanvas._onMouseUp);
+				removeListener(fabric.document, 'mouseup', fromCanvas._onMouseUp);
 				removeListener(fabric.document, 'mousemove', fromCanvas._onMouseMove);
         
         addListener(fabric.document, 'mouseup', toCanvas._onMouseUp);
-        addListener(fabric.document, 'mousemove', toCanvas._onMouseMove);*/
+        addListener(fabric.document, 'mousemove', toCanvas._onMouseMove);
 
         setTimeout(function() {
 
@@ -113,7 +106,6 @@ function generateCanvas(event) {
 
 		window["canvas"+i] = new fabric.Canvas("canvas"+i);
 		window["canvas"+i].on("object:moving", onObjectMoving);
-		window["canvas"+i].on("object:selected", onObjectSelected);
 	}
 }
 
