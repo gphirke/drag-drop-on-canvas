@@ -1,0 +1,16 @@
+canvas {
+	border: 1px solid black;
+	margin: 20px;
+}
+
+.canvas-container {
+	margin: 10px;
+}
+
+#canvasBlock {
+	display: flex;
+}
+
+button {
+	margin: 4px;
+}
