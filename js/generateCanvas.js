@@ -15,8 +15,8 @@ var canvas3 = null;
 
 var onObjectMoving = function(p, evt) {
       var viewport = p.target.canvas.calcViewportBoundaries(); 
-      console.log(p.target.canvas.lowerCanvasEl.id);
-      console.log(p.e.clientX)
+      //console.log(p.target.canvas.lowerCanvasEl.id);
+      //console.log(p.e.clientX)
       if (p.target.canvas === canvas0) {
           
         	if(p.e.clientX > 330 && p.e.clientX < 660){
@@ -71,8 +71,8 @@ var transferObject = function(fromCanvas, toCanvas, pendingImage) {
         var removeListener = fabric.util.removeListener;
         var addListener = fabric.util.addListener;
 				
-				removeListener(fabric.document, 'mouseup', fromCanvas._onMouseUp);
-				removeListener(fabric.document, 'mousemove', fromCanvas._onMouseMove);
+	removeListener(fabric.document, 'mouseup', fromCanvas._onMouseUp);
+	removeListener(fabric.document, 'mousemove', fromCanvas._onMouseMove);
         
         addListener(fabric.document, 'mouseup', toCanvas._onMouseUp);
         addListener(fabric.document, 'mousemove', toCanvas._onMouseMove);
