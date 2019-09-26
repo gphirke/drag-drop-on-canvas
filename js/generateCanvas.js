@@ -173,7 +173,7 @@ function generateObjectsInCanvas(){
 
 function getSelectedCanvas(){
 	let selectedCanvasId = document.getElementById("selectedCanvas").value;
-	if(!selectedCanvas){
+	if(!selectedCanvasId){
 		alert("Please select canvas");
 	}
 	return selectedCanvasId;
